@@ -298,6 +298,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = 'hidden';
     };
 
+    const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+    if (lightboxMediaContainer) {
+      lightboxMediaContainer.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
     // Close Lightbox
     const closeLightbox = () => {
       lightboxModal.classList.remove('active');
@@ -305,9 +312,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lightboxVideo) {
         lightboxVideo.pause();
         lightboxVideo.src = '';
+        lightboxVideo.style.display = 'none';
       }
       if (lightboxImg) {
         lightboxImg.src = '';
+        lightboxImg.style.display = 'none';
       }
     };
 
