@@ -1,5 +1,89 @@
 // Prithvi's Redville Farmhouse - Interactive Script
 
+// ========================================================
+// 0. SMOOTH PAGE TRANSITIONS & TOP GOLDEN PROGRESS BAR
+// ========================================================
+(function initPageTransitions() {
+  const ensureProgressBar = () => {
+    let progressBar = document.getElementById('pageProgressBar');
+    if (!progressBar && document.body) {
+      progressBar = document.createElement('div');
+      progressBar.id = 'pageProgressBar';
+      progressBar.className = 'page-progress-bar';
+      document.body.prepend(progressBar);
+    }
+    return progressBar;
+  };
+
+  const finishLoading = () => {
+    const bar = ensureProgressBar();
+    if (bar) bar.style.width = '100%';
+    setTimeout(() => {
+      document.body?.classList.add('page-loaded');
+      if (bar) {
+        bar.classList.add('finished');
+        setTimeout(() => {
+          bar.style.width = '0%';
+          bar.classList.remove('finished');
+        }, 350);
+      }
+    }, 100);
+  };
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    finishLoading();
+  } else {
+    window.addEventListener('DOMContentLoaded', finishLoading);
+  }
+
+  // Handle browser back/forward (bfcache)
+  window.addEventListener('pageshow', () => {
+    document.body?.classList.remove('page-exiting');
+    document.body?.classList.add('page-loaded');
+  });
+
+  // Intercept internal navigation for smooth fade-out exit
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a');
+    if (!anchor) return;
+
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+
+    // Ignore anchors, external protocols, downloads, target="_blank"
+    if (
+      href.startsWith('#') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('javascript:') ||
+      anchor.getAttribute('target') === '_blank' ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (url.origin === window.location.origin) {
+        // If same page hash anchor, do not exit
+        if (url.pathname === window.location.pathname && url.hash) return;
+
+        e.preventDefault();
+        const bar = ensureProgressBar();
+        document.body?.classList.add('page-exiting');
+        if (bar) bar.style.width = '70%';
+
+        setTimeout(() => {
+          if (bar) bar.style.width = '100%';
+          window.location.href = anchor.href;
+        }, 220);
+      }
+    } catch (err) {
+      // Fallback standard navigation
+    }
+  });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Mobile Menu Toggle
   const menuToggle = document.getElementById('menuToggle');
@@ -339,4 +423,104 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 9. Scroll-Driven Reveal Animations & Counter
+  const initScrollReveal = () => {
+    // Collect reveal candidates across sections
+    const revealSelectors = [
+      '.section-title',
+      '.section-subtitle',
+      '.section-tag',
+      '.hero-badge',
+      '.occasion-card',
+      '.feature-card',
+      '.pillar-card',
+      '.review-card',
+      '.pricing-card',
+      '.timeline-item',
+      '.faq-item',
+      '.contact-info-item',
+      '.about-story-media',
+      '.about-story-content',
+      '.about-stat-item',
+      '.video-card',
+      '.photo-card'
+    ];
+
+    const elementsToReveal = document.querySelectorAll(revealSelectors.join(', '));
+
+    // Stagger grid containers
+    const gridContainers = document.querySelectorAll(
+      '.occasions-grid, .features-grid, .reviews-grid, .pricing-grid, .video-grid, .photo-grid, .timeline'
+    );
+
+    gridContainers.forEach(grid => {
+      const children = Array.from(grid.children);
+      children.forEach((child, idx) => {
+        child.classList.add('reveal');
+        const delayClass = `reveal-delay-${(idx % 4) + 1}`;
+        child.classList.add(delayClass);
+      });
+    });
+
+    // Add .reveal class to individual headers and other targets
+    elementsToReveal.forEach(el => {
+      if (!el.classList.contains('reveal')) {
+        el.classList.add('reveal');
+      }
+    });
+
+    // IntersectionObserver to trigger reveals smoothly on scroll
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      elementsToReveal.forEach(el => revealObserver.observe(el));
+    } else {
+      elementsToReveal.forEach(el => el.classList.add('revealed'));
+    }
+
+    // Stat Numbers Smooth Count-Up Animation
+    const statNumbers = document.querySelectorAll('.about-stat-num, .about-stat-box h3');
+    if (statNumbers.length > 0 && 'IntersectionObserver' in window) {
+      const countObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.innerText.trim();
+            const match = text.match(/\d+/);
+            if (match) {
+              const targetNum = parseInt(match[0], 10);
+              const prefix = text.split(match[0])[0] || '';
+              const suffix = text.split(match[0])[1] || '';
+              let current = 0;
+              const step = Math.max(1, Math.ceil(targetNum / 35));
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= targetNum) {
+                  current = targetNum;
+                  clearInterval(timer);
+                }
+                el.innerText = `${prefix}${current}${suffix}`;
+              }, 25);
+            }
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      statNumbers.forEach(stat => countObserver.observe(stat));
+    }
+  };
+
+  initScrollReveal();
 });

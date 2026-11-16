@@ -36,6 +36,25 @@ html {
   max-width: 100%;
 }
 
+/* Top Golden Progress Bar */
+.page-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #c49537, #ffd875, #25d366);
+  z-index: 100000;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(196, 149, 55, 0.7);
+}
+
+.page-progress-bar.finished {
+  width: 100%;
+  opacity: 0;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-light);
@@ -44,6 +63,69 @@ body {
   overflow-x: hidden;
   max-width: 100%;
   position: relative;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.page-exiting {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* ========================================================
+   SCROLL-DRIVEN REVEAL ANIMATIONS
+   ======================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered Delays for Grid Children */
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.40s; }
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .reveal,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 h1, h2, h3, h4, h5, p, span, a {
@@ -1899,6 +1981,18 @@ h1, h2, h3, h4, .brand-logo {
 }
 
 /* Floating WhatsApp Button */
+@keyframes pulseAura {
+  0% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(37, 211, 102, 0.65);
+  }
+  70% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25), 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
 .floating-whatsapp {
   position: fixed;
   bottom: 25px;
@@ -1915,6 +2009,7 @@ h1, h2, h3, h4, .brand-logo {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   z-index: 9999;
   transition: var(--transition);
+  animation: pulseAura 2.6s infinite;
 }
 
 .floating-whatsapp:hover {
