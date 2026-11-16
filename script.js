@@ -308,4 +308,35 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+
+  // 8. Reviews Mobile Carousel Dot Sync
+  const reviewsGrid = document.getElementById('reviewsGrid');
+  const reviewDots = document.querySelectorAll('.review-dot');
+
+  if (reviewsGrid && reviewDots.length > 0) {
+    const updateActiveDot = () => {
+      const scrollLeft = reviewsGrid.scrollLeft;
+      const cardWidth = reviewsGrid.querySelector('.review-card')?.offsetWidth || 1;
+      const activeIdx = Math.round(scrollLeft / (cardWidth + 16));
+      reviewDots.forEach((dot, idx) => {
+        if (idx === activeIdx) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+
+    reviewsGrid.addEventListener('scroll', updateActiveDot, { passive: true });
+
+    reviewDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+        const cards = reviewsGrid.querySelectorAll('.review-card');
+        if (cards[idx]) {
+          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    });
+  }
 });
