@@ -1940,15 +1940,61 @@ h1, h2, h3, h4, .brand-logo {
   .top-bar {
     display: none;
   }
-  .menu-toggle {
-    display: block;
+
+  /* Compact & Beautiful Mobile Header */
+  .nav-container {
+    padding: 12px 16px;
   }
+  .brand-logo {
+    font-size: 1.25rem;
+    gap: 8px;
+  }
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+  .nav-cta {
+    gap: 8px;
+  }
+  .nav-cta .btn-whatsapp {
+    padding: 7px 13px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 50px;
+    white-space: nowrap;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+  }
+  .nav-cta .btn-whatsapp i {
+    font-size: 0.9rem;
+  }
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    background: rgba(30, 63, 32, 0.08);
+    color: var(--primary-dark);
+    border: 1px solid rgba(30, 63, 32, 0.12);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .site-header:not(.scrolled) .menu-toggle {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
   .nav-links {
     position: fixed;
-    top: 70px;
+    top: 62px;
     left: -100%;
     width: 100%;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 62px);
     background: #ffffff;
     flex-direction: column;
     padding: 30px;
@@ -1993,13 +2039,17 @@ h1, h2, h3, h4, .brand-logo {
     border-radius: var(--radius-sm);
   }
 
-  /* Mobile Google Reviews Horizontal Carousel */
+  /* Mobile Google Reviews Compact Horizontal Carousel */
   .google-badge-container {
-    padding: 10px 18px;
-    border-radius: 20px;
+    padding: 8px 18px;
+    border-radius: 30px;
     gap: 8px;
     width: auto;
     max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .google-stars {
+    font-size: 0.95rem;
   }
 
   .reviews-carousel-wrapper {
@@ -2012,8 +2062,8 @@ h1, h2, h3, h4, .brand-logo {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 16px;
-    padding: 10px 20px 20px;
+    gap: 14px;
+    padding: 4px 18px 16px;
     scrollbar-width: none;
   }
 
@@ -2022,28 +2072,66 @@ h1, h2, h3, h4, .brand-logo {
   }
 
   .review-card {
-    flex: 0 0 85%;
-    min-width: 85%;
-    max-width: 85%;
+    flex: 0 0 78%;
+    min-width: 78%;
+    max-width: 78%;
     scroll-snap-align: center;
     border-radius: var(--radius-md);
-    box-shadow: 0 6px 20px rgba(18, 40, 20, 0.08);
+    padding: 16px 16px 14px;
+    box-shadow: 0 4px 14px rgba(18, 40, 20, 0.07);
     border: 1px solid var(--border-color);
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .review-stars {
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+  }
+
+  .review-text {
+    font-size: 0.86rem;
+    line-height: 1.48;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+
+  .reviewer-profile {
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .reviewer-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .reviewer-info h5 {
+    font-size: 0.86rem;
+    margin-bottom: 1px;
+  }
+
+  .reviewer-info span {
+    font-size: 0.74rem;
   }
 
   .reviews-carousel-dots {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 5px;
-    margin-bottom: 8px;
+    gap: 6px;
+    margin-top: 4px;
+    margin-bottom: 6px;
   }
 
   .review-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: #d4ded5;
     transition: all 0.3s ease;
@@ -2051,7 +2139,7 @@ h1, h2, h3, h4, .brand-logo {
   }
 
   .review-dot.active {
-    width: 24px;
+    width: 20px;
     border-radius: 10px;
     background: var(--primary);
   }
@@ -2061,9 +2149,9 @@ h1, h2, h3, h4, .brand-logo {
     align-items: center;
     justify-content: center;
     gap: 6px;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 }
 
