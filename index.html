@@ -443,16 +443,20 @@
   <!-- ========================================================
        GOOGLE REVIEWS & SOCIAL PROOF SECTION
        ======================================================== -->
-  <section class="section bg-soft">
+  <section class="section bg-soft" id="reviewsSection">
     <div class="container text-center">
       <span class="section-tag">Guest Experiences</span>
       <h2 class="section-title">Loved by Groups & Families</h2>
       
-      <!-- Google 4.9 Star Badge -->
+      <!-- Google 4.9 Star Badge (Clickable to Verified Farmhouse Listing) -->
       <div>
-        <div class="google-badge-container">
+        <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="google-badge-container" 
+           title="Click to view Prithvi's Redville on Google Maps">
           <div class="google-badge-left">
-            <i class="fab fa-google" style="color: #4285f4; font-size: 1.3rem;"></i>
+            <i class="fab fa-google" style="color: #4285f4; font-size: 1.25rem;"></i>
             <span style="font-weight: 700; color: var(--primary-dark); font-size: 1.05rem;">4.9 / 5.0</span>
             <span class="google-stars">
               <i class="fas fa-star"></i>
@@ -463,11 +467,18 @@
             </span>
           </div>
           <span class="google-badge-text">(Based on 120+ Verified Group Stays)</span>
-        </div>
+          <i class="fas fa-external-link-alt" style="font-size: 0.72rem; color: var(--text-muted); margin-left: 2px;"></i>
+        </a>
       </div>
 
-      <!-- Reviews Carousel / Grid -->
+      <!-- Reviews Carousel Wrapper -->
       <div class="reviews-carousel-wrapper">
+        <!-- Prev Arrow Button -->
+        <button type="button" class="reviews-nav-btn reviews-nav-prev" id="reviewsPrevBtn" aria-label="Previous review">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- Reviews Horizontal Sliding Track -->
         <div class="reviews-grid" id="reviewsGrid">
           <!-- Review 1 -->
           <div class="review-card">
@@ -536,18 +547,55 @@
               </div>
             </div>
           </div>
+
+          <!-- Review 5 -->
+          <div class="review-card">
+            <div class="review-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">
+              "Best weekend picnic near Mumbai! The river bank and mango plantations felt so refreshing. Caretaker arranged the evening barbecue and bonfire seamlessly."
+            </p>
+            <div class="reviewer-profile">
+              <div class="reviewer-avatar" style="background: #d35400;">R</div>
+              <div class="reviewer-info">
+                <h5>Rajesh Patil & Group</h5>
+                <span>Weekend Getaway • Panvel</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Mobile Carousel Navigation Dots & Hint -->
+        <!-- Next Arrow Button -->
+        <button type="button" class="reviews-nav-btn reviews-nav-next" id="reviewsNextBtn" aria-label="Next review">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- Carousel Navigation Dots -->
         <div class="reviews-carousel-dots" id="reviewsDots">
-          <span class="review-dot active" data-index="0"></span>
-          <span class="review-dot" data-index="1"></span>
-          <span class="review-dot" data-index="2"></span>
-          <span class="review-dot" data-index="3"></span>
+          <span class="review-dot active" data-index="0" role="button" aria-label="Slide 1"></span>
+          <span class="review-dot" data-index="1" role="button" aria-label="Slide 2"></span>
+          <span class="review-dot" data-index="2" role="button" aria-label="Slide 3"></span>
+          <span class="review-dot" data-index="3" role="button" aria-label="Slide 4"></span>
+          <span class="review-dot" data-index="4" role="button" aria-label="Slide 5"></span>
         </div>
+
         <div class="reviews-swipe-hint">
-          <i class="fas fa-arrows-left-right"></i> Swipe to see more reviews
+          <i class="fas fa-arrows-left-right"></i> Drag or swipe horizontally to see more reviews
         </div>
+      </div>
+
+      <!-- Action Button to View All Google Reviews -->
+      <div style="margin-top: 26px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-outline-dark" 
+           style="padding: 11px 26px; font-size: 0.92rem; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fab fa-google" style="color: #4285f4; font-size: 1.05rem;"></i>
+          <span>Read All 120+ Verified Reviews on Google Maps</span>
+          <i class="fas fa-external-link-alt" style="font-size: 0.78rem; opacity: 0.7;"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -665,21 +713,21 @@
             </div>
           </div>
 
-          <a href="https://www.google.com/maps/search/?api=1&query=Gadeshwar+Dam+Panvel+Dhodani" target="_blank" class="btn-navigation">
+          <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" target="_blank" rel="noopener noreferrer" class="btn-navigation">
             <i class="fas fa-directions"></i> Get Navigation Directions
           </a>
         </div>
 
         <!-- Right: Interactive Google Map with "Open in Maps" Badge -->
         <div class="location-map-card">
-          <a href="https://www.google.com/maps/search/?api=1&query=Gadeshwar+Dam+Panvel+Dhodani" target="_blank" class="map-open-badge">
+          <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" target="_blank" rel="noopener noreferrer" class="map-open-badge">
             <span>Open in Maps</span>
             <i class="fas fa-external-link-alt"></i>
           </a>
           <iframe 
             class="map-iframe"
             title="Prithvi's Redville Farmhouse Location"
-            src="https://maps.google.com/maps?q=Gadeshwar+Dam+Panvel+Dhodani&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=Prithvi's+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel&t=&z=14&ie=UTF8&iwloc=&output=embed"
             loading="lazy" 
             allowfullscreen>
           </iframe>

@@ -402,34 +402,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 8. Reviews Mobile Carousel Dot Sync
+  // 8. Reviews Horizontal Carousel Navigation & Dot Sync
   const reviewsGrid = document.getElementById('reviewsGrid');
   const reviewDots = document.querySelectorAll('.review-dot');
+  const reviewsPrevBtn = document.getElementById('reviewsPrevBtn');
+  const reviewsNextBtn = document.getElementById('reviewsNextBtn');
 
-  if (reviewsGrid && reviewDots.length > 0) {
-    const updateActiveDot = () => {
-      const scrollLeft = reviewsGrid.scrollLeft;
-      const cardWidth = reviewsGrid.querySelector('.review-card')?.offsetWidth || 1;
-      const activeIdx = Math.round(scrollLeft / (cardWidth + 16));
-      reviewDots.forEach((dot, idx) => {
-        if (idx === activeIdx) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
+  if (reviewsGrid) {
+    const getScrollStep = () => {
+      const firstCard = reviewsGrid.querySelector('.review-card');
+      if (!firstCard) return 320;
+      const gap = parseInt(window.getComputedStyle(reviewsGrid).gap || '24', 10);
+      return firstCard.offsetWidth + gap;
     };
 
-    reviewsGrid.addEventListener('scroll', updateActiveDot, { passive: true });
-
-    reviewDots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
-        const cards = reviewsGrid.querySelectorAll('.review-card');
-        if (cards[idx]) {
-          cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
+    if (reviewsPrevBtn) {
+      reviewsPrevBtn.addEventListener('click', () => {
+        reviewsGrid.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
       });
+    }
+
+    if (reviewsNextBtn) {
+      reviewsNextBtn.addEventListener('click', () => {
+        reviewsGrid.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    // Dynamic Dot Indicator Synchronization
+    if (reviewDots.length > 0) {
+      let isThrottled = false;
+      const updateActiveDot = () => {
+        if (isThrottled) return;
+        isThrottled = true;
+        requestAnimationFrame(() => {
+          const cards = reviewsGrid.querySelectorAll('.review-card');
+          if (!cards.length) {
+            isThrottled = false;
+            return;
+          }
+          const gridRect = reviewsGrid.getBoundingClientRect();
+          const gridCenter = gridRect.left + gridRect.width / 2;
+          let closestIdx = 0;
+          let minDiff = Infinity;
+
+          cards.forEach((card, idx) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.left + rect.width / 2;
+            const diff = Math.abs(cardCenter - gridCenter);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIdx = idx;
+            }
+          });
+
+          reviewDots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === closestIdx);
+          });
+          isThrottled = false;
+        });
+      };
+
+      reviewsGrid.addEventListener('scroll', updateActiveDot, { passive: true });
+
+      reviewDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+          const cards = reviewsGrid.querySelectorAll('.review-card');
+          if (cards[idx]) {
+            const isMobile = window.innerWidth <= 768;
+            cards[idx].scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+              inline: isMobile ? 'center' : 'start'
+            });
+          }
+        });
+      });
+
+      // Initial active dot update
+      setTimeout(updateActiveDot, 100);
+    }
+
+    // Smooth drag-to-scroll on desktop mouse
+    let isDown = false;
+    let startX = 0;
+    let scrollLeftPos = 0;
+
+    reviewsGrid.addEventListener('mousedown', (e) => {
+      if (e.button !== 0 || e.target.closest('a, button')) return;
+      isDown = true;
+      reviewsGrid.style.cursor = 'grabbing';
+      reviewsGrid.style.scrollBehavior = 'auto';
+      startX = e.pageX - reviewsGrid.offsetLeft;
+      scrollLeftPos = reviewsGrid.scrollLeft;
+    });
+
+    const stopDragging = () => {
+      if (isDown) {
+        isDown = false;
+        reviewsGrid.style.cursor = '';
+        reviewsGrid.style.scrollBehavior = 'smooth';
+      }
+    };
+
+    reviewsGrid.addEventListener('mouseleave', stopDragging);
+    reviewsGrid.addEventListener('mouseup', stopDragging);
+
+    reviewsGrid.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - reviewsGrid.offsetLeft;
+      const walk = (x - startX) * 1.3;
+      reviewsGrid.scrollLeft = scrollLeftPos - walk;
     });
   }
 
@@ -494,6 +578,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       elementsToReveal.forEach(el => revealObserver.observe(el));
+
+      // Ensure all horizontal review cards are fully revealed when reviews section enters viewport
+      if (reviewsGrid) {
+        const reviewsSectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              reviewsGrid.querySelectorAll('.review-card').forEach(card => card.classList.add('revealed'));
+            }
+          });
+        }, { threshold: 0.1 });
+        reviewsSectionObserver.observe(reviewsGrid);
+      }
     } else {
       elementsToReveal.forEach(el => el.classList.add('revealed'));
     }
