@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const guests = document.getElementById('quickGuests')?.value || '10+';
       const packageType = document.getElementById('quickPackage')?.value || '22-Hour Stay';
 
-      const whatsappNumber = '919819969677';
+      const whatsappNumber = '917506556672';
       const textMessage = `*Prithvi's Redville - Quick Availability Check*%0A%0A` +
         `📅 *Requested Date:* ${encodeURIComponent(date)}%0A` +
         `👥 *Number of Guests:* ${encodeURIComponent(guests)}%0A` +
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const packageType = document.getElementById('packageType')?.value || 'Stay Package';
       const message = document.getElementById('guestNotes')?.value || 'None';
 
-      const whatsappNumber = '919819969677';
+      const whatsappNumber = '917506556672';
       const textMessage = `*New Booking Enquiry - Prithvi's Redville*%0A%0A` +
         `👤 *Name:* ${encodeURIComponent(name)}%0A` +
         `📱 *Phone:* ${encodeURIComponent(phone)}%0A` +
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (lightboxWhatsApp) {
         const waMsg = `Hello Prithvi's Redville, I am interested in this view from your gallery: ${title}`;
-        lightboxWhatsApp.href = `https://wa.me/919819969677?text=${encodeURIComponent(waMsg)}`;
+        lightboxWhatsApp.href = `https://wa.me/917506556672?text=${encodeURIComponent(waMsg)}`;
       }
 
       if (isVideo) {
