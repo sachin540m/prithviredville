@@ -322,11 +322,24 @@ h1, h2, h3, h4, .brand-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.6rem;
-  color: #ffffff; /* Crisp white at top */
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
   transition: var(--transition);
+}
+
+.brand-logo-img {
+  height: 52px;
+  width: auto;
+  max-width: 195px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.site-header:not(.scrolled) .brand-logo-img {
+  background: rgba(255, 255, 255, 0.94);
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
 
 .brand-icon {
@@ -416,6 +429,12 @@ h1, h2, h3, h4, .brand-logo {
 .site-header.scrolled .brand-logo {
   color: var(--primary-dark);
   text-shadow: none;
+}
+
+.site-header.scrolled .brand-logo-img {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
 }
 
 .site-header.scrolled .brand-icon {
@@ -2040,6 +2059,33 @@ h1, h2, h3, h4, .brand-logo {
   margin-bottom: 15px;
 }
 
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 18px;
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  height: 56px;
+  width: auto;
+  max-width: 210px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 10px;
+  display: block;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+}
+
+.hero-cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
 .footer-brand p {
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.7;
@@ -2159,6 +2205,30 @@ h1, h2, h3, h4, .brand-logo {
   .brand-logo {
     font-size: 1.25rem;
     gap: 8px;
+  }
+  .brand-logo-img {
+    height: 38px;
+    max-width: 145px;
+  }
+  .site-header:not(.scrolled) .brand-logo-img {
+    padding: 3px 6px;
+    border-radius: 6px;
+  }
+  .footer-logo-img {
+    height: 48px;
+    max-width: 175px;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 15px auto 0;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
   .brand-icon {
     width: 32px;

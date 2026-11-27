@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 
@@ -33,9 +34,8 @@
 
     <nav class="navbar" id="mainNavbar">
       <div class="container nav-container">
-        <a href="index.html" class="brand-logo">
-          <span class="brand-icon"><i class="fas fa-leaf"></i></span>
-          <span>Prithvi's Redville</span>
+        <a href="index.html" class="brand-logo" aria-label="Prithvi's Redville Farmhouse Home">
+          <img src="images/logo.png" alt="Prithvi's Redville Farmhouse" class="brand-logo-img">
         </a>
 
         <div class="nav-links" id="navLinks">
@@ -236,49 +236,162 @@
         </p>
       </div>
 
-      <!-- Google Reviews Highlight Card on Amenities Page -->
-      <div style="margin-top: 50px; background: #ffffff; border-radius: var(--radius-lg); padding: 40px 30px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+      <!-- ========================================================
+           GOOGLE REVIEWS & GUEST EXPERIENCES HORIZONTAL CAROUSEL
+           ======================================================== -->
+      <div style="margin-top: 60px;">
+        <div class="text-center">
+          <span class="section-tag">Guest Experiences</span>
+          <h2 class="section-title">Loved by Groups & Families</h2>
+          
+          <!-- Google 4.9 Star Badge (Clickable to Verified Farmhouse Listing) -->
           <div>
-            <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" style="width: 24px; height: 24px;">
-              <span style="font-weight: 700; font-size: 1.15rem; color: var(--primary-dark);">Google Reviews</span>
-              <span style="color: #fbbc04; font-size: 1.1rem; letter-spacing: 2px;">★★★★★</span>
-              <strong style="color: var(--primary-dark); font-size: 1.1rem;">4.9 / 5.0</strong>
+            <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="google-badge-container" 
+               title="Click to view Prithvi's Redville on Google Maps">
+              <div class="google-badge-left">
+                <i class="fab fa-google" style="color: #4285f4; font-size: 1.25rem;"></i>
+                <span style="font-weight: 700; color: var(--primary-dark); font-size: 1.05rem;">4.9 / 5.0</span>
+                <span class="google-stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </span>
+              </div>
+              <span class="google-badge-text">(Based on 120+ Verified Group Stays)</span>
+              <i class="fas fa-external-link-alt" style="font-size: 0.72rem; color: var(--text-muted); margin-left: 2px;"></i>
+            </a>
+          </div>
+
+          <!-- Reviews Carousel Wrapper -->
+          <div class="reviews-carousel-wrapper">
+            <!-- Prev Arrow Button -->
+            <button type="button" class="reviews-nav-btn reviews-nav-prev" aria-label="Previous review">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <!-- Reviews Horizontal Sliding Track -->
+            <div class="reviews-grid">
+              <!-- Review 1 -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                  "The food was exceptional! Unlimited Spicy Chicken Gravy (Rassa) with hot bhakari in dinner tasted so authentic. Pool was sparkling clean and 100% private."
+                </p>
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar">R</div>
+                  <div class="reviewer-info">
+                    <h5>Rohan Mehta & Group</h5>
+                    <span>Bachelor Reunion • Navi Mumbai</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                  "Morning breakfast with piping hot Misal Pav and tea right after our morning swim was so refreshing. Generous 22-hour duration from 5 PM to 3 PM!"
+                </p>
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar" style="background: var(--accent);">S</div>
+                  <div class="reviewer-info">
+                    <h5>Dr. Sneha Deshmukh</h5>
+                    <span>Family Vacation • Thane</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                  "Paneer Masala and Tadka Dal was delicious for our vegetarian team members. Evening bonfire with barbecue grill and high-power DJ system made our offsite unforgettable."
+                </p>
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar" style="background: #27ae60;">A</div>
+                  <div class="reviewer-info">
+                    <h5>Amit Verma & Team</h5>
+                    <span>Corporate Outing • Pune</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 4 -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                  "Celebrated parents' 25th anniversary. The peaceful river-touch setting, unlimited delicious home-style meals, and sunset over the hills made it truly special."
+                </p>
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar" style="background: #8e44ad;">P</div>
+                  <div class="reviewer-info">
+                    <h5>Priya Sawant</h5>
+                    <span>Family Celebration • Dadar, Mumbai</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Review 5 -->
+              <div class="review-card">
+                <div class="review-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                  "Best weekend picnic near Mumbai! The river bank and mango plantations felt so refreshing. Caretaker arranged the evening barbecue and bonfire seamlessly."
+                </p>
+                <div class="reviewer-profile">
+                  <div class="reviewer-avatar" style="background: #d35400;">R</div>
+                  <div class="reviewer-info">
+                    <h5>Rajesh Patil & Group</h5>
+                    <span>Weekend Getaway • Panvel</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p style="margin: 0; color: var(--text-muted); font-size: 0.92rem;">Rated 4.9 by 120+ Verified Families, Friends & Corporate Groups</p>
-          </div>
-          <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark" style="padding: 10px 20px; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px;">
-            <i class="fab fa-google" style="color: #4285f4;"></i> Read All Google Reviews <i class="fas fa-external-link-alt" style="font-size: 0.75rem; opacity: 0.7;"></i>
-          </a>
-        </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-          <div style="background: var(--bg-light); padding: 22px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-            <div style="color: #fbbc04; margin-bottom: 10px; font-size: 0.95rem;">★★★★★</div>
-            <p style="color: var(--text-dark); font-size: 0.92rem; line-height: 1.6; font-style: italic; margin-bottom: 14px;">
-              "The food was exceptional! Unlimited Spicy Chicken Gravy (Rassa) with hot bhakari in dinner tasted so authentic. Pool was sparkling clean and private."
-            </p>
-            <strong style="color: var(--primary-dark); font-size: 0.92rem; display: block;">— Rohan Mehta & Group</strong>
-            <span style="color: var(--text-muted); font-size: 0.8rem;">Bachelor Reunion • Navi Mumbai</span>
-          </div>
+            <!-- Next Arrow Button -->
+            <button type="button" class="reviews-nav-btn reviews-nav-next" aria-label="Next review">
+              <i class="fas fa-chevron-right"></i>
+            </button>
 
-          <div style="background: var(--bg-light); padding: 22px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-            <div style="color: #fbbc04; margin-bottom: 10px; font-size: 0.95rem;">★★★★★</div>
-            <p style="color: var(--text-dark); font-size: 0.92rem; line-height: 1.6; font-style: italic; margin-bottom: 14px;">
-              "Morning breakfast with piping hot Misal Pav and tea right after our morning swim was so refreshing. Generous 22-hour duration from 5 PM to 3 PM!"
-            </p>
-            <strong style="color: var(--primary-dark); font-size: 0.92rem; display: block;">— Sneha Deshmukh</strong>
-            <span style="color: var(--text-muted); font-size: 0.8rem;">Family Vacation • Thane</span>
+            <!-- Carousel Navigation Dots -->
+            <div class="reviews-carousel-dots">
+              <span class="review-dot active" data-index="0" role="button" aria-label="Slide 1"></span>
+              <span class="review-dot" data-index="1" role="button" aria-label="Slide 2"></span>
+              <span class="review-dot" data-index="2" role="button" aria-label="Slide 3"></span>
+              <span class="review-dot" data-index="3" role="button" aria-label="Slide 4"></span>
+              <span class="review-dot" data-index="4" role="button" aria-label="Slide 5"></span>
+            </div>
+
+            <div class="reviews-swipe-hint">
+              <i class="fas fa-arrows-left-right"></i> Drag or swipe horizontally to see more reviews
+            </div>
           </div>
 
-          <div style="background: var(--bg-light); padding: 22px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-            <div style="color: #fbbc04; margin-bottom: 10px; font-size: 0.95rem;">★★★★★</div>
-            <p style="color: var(--text-dark); font-size: 0.92rem; line-height: 1.6; font-style: italic; margin-bottom: 14px;">
-              "Paneer masala and Tadka Dal was delicious for our vegetarian family members. Complete privacy, mountain river views, and high-power DJ system."
-            </p>
-            <strong style="color: var(--primary-dark); font-size: 0.92rem; display: block;">— Amit Verma & Team</strong>
-            <span style="color: var(--text-muted); font-size: 0.8rem;">Corporate Outing • Pune</span>
+          <!-- Action Button to View All Google Reviews -->
+          <div style="margin-top: 26px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=Prithvi%27s+Redville+and+River+Side+Agro+Farmhouse+Dodhani+Panvel" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn btn-outline-dark" 
+               style="padding: 11px 26px; font-size: 0.92rem; border-radius: 50px; display: inline-flex; align-items: center; gap: 8px;">
+              <i class="fab fa-google" style="color: #4285f4; font-size: 1.05rem;"></i>
+              <span>Read All 120+ Verified Reviews on Google Maps</span>
+              <i class="fas fa-external-link-alt" style="font-size: 0.78rem; opacity: 0.7;"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -460,7 +573,9 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <h3 class="brand-logo" style="color: #fff;"><i class="fas fa-leaf" style="color: var(--accent);"></i> Prithvi's Redville</h3>
+        <a href="index.html" class="footer-logo-link" aria-label="Prithvi's Redville Farmhouse Home">
+          <img src="images/logo.png" alt="Prithvi's Redville Farmhouse" class="footer-logo-img">
+        </a>
         <p>A picturesque river-touch farmhouse retreat tucked near Gadeshwar Dam, Panvel. Mesmerizing views from the valley of Matheran, perfect for 22-hour group stays, parties, and nature getaways.</p>
         <p><i class="fas fa-clock" style="color: var(--accent);"></i> Check-in: 5:00 PM | Check-out: 3:00 PM</p>
       </div>

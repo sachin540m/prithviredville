@@ -402,13 +402,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 8. Reviews Horizontal Carousel Navigation & Dot Sync
-  const reviewsGrid = document.getElementById('reviewsGrid');
-  const reviewDots = document.querySelectorAll('.review-dot');
-  const reviewsPrevBtn = document.getElementById('reviewsPrevBtn');
-  const reviewsNextBtn = document.getElementById('reviewsNextBtn');
+  // 8. Reviews Horizontal Carousel Navigation & Dot Sync (Supports Multiple Carousels)
+  const carouselWrappers = document.querySelectorAll('.reviews-carousel-wrapper');
 
-  if (reviewsGrid) {
+  carouselWrappers.forEach(wrapper => {
+    const reviewsGrid = wrapper.querySelector('.reviews-grid');
+    const reviewDots = wrapper.querySelectorAll('.review-dot');
+    const reviewsPrevBtn = wrapper.querySelector('.reviews-nav-prev');
+    const reviewsNextBtn = wrapper.querySelector('.reviews-nav-next');
+
+    if (!reviewsGrid) return;
+
     const getScrollStep = () => {
       const firstCard = reviewsGrid.querySelector('.review-card');
       if (!firstCard) return 320;
@@ -480,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Initial active dot update
-      setTimeout(updateActiveDot, 100);
+      setTimeout(updateActiveDot, 120);
     }
 
     // Smooth drag-to-scroll on desktop mouse
@@ -515,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const walk = (x - startX) * 1.3;
       reviewsGrid.scrollLeft = scrollLeftPos - walk;
     });
-  }
+  });
 
   // 9. Scroll-Driven Reveal Animations & Counter
   const initScrollReveal = () => {
@@ -580,16 +584,16 @@ document.addEventListener('DOMContentLoaded', () => {
       elementsToReveal.forEach(el => revealObserver.observe(el));
 
       // Ensure all horizontal review cards are fully revealed when reviews section enters viewport
-      if (reviewsGrid) {
+      document.querySelectorAll('.reviews-grid').forEach(grid => {
         const reviewsSectionObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              reviewsGrid.querySelectorAll('.review-card').forEach(card => card.classList.add('revealed'));
+              grid.querySelectorAll('.review-card').forEach(card => card.classList.add('revealed'));
             }
           });
         }, { threshold: 0.1 });
-        reviewsSectionObserver.observe(reviewsGrid);
-      }
+        reviewsSectionObserver.observe(grid);
+      });
     } else {
       elementsToReveal.forEach(el => el.classList.add('revealed'));
     }
