@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://sachin540m.github.io/prithviredville/images/logo.png</image:loc>
+      <image:title>Prithvi's Redville Farmhouse Panvel</image:title>
+      <image:caption>Private river-touch farmhouse in Dodhani, Panvel with swimming pool and unlimited meals</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sachin540m.github.io/prithviredville/images/bannerimage.jpeg</image:loc>
+      <image:title>Prithvi's Redville Farmhouse Aerial Drone View</image:title>
+    </image:image>
+  </url>
+
+  <!-- Amenities & Food Menu Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/amenities.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sachin540m.github.io/prithviredville/images/gallery-img-01.jpg</image:loc>
+      <image:title>Swimming Pool and Amenities at Prithvi's Redville</image:title>
+    </image:image>
+  </url>
+
+  <!-- Photo & Video Gallery Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/gallery.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://sachin540m.github.io/prithviredville/images/gallery-img-12.jpg</image:loc>
+      <image:title>Farmhouse Garden and Lawns Panvel</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Farmhouse Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/about.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://sachin540m.github.io/prithviredville/images/about.jpeg</image:loc>
+      <image:title>About Prithvi's Redville Farmhouse Nature Sanctuary</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact & Directions Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/contact.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Stay Policies & Terms Page -->
+  <url>
+    <loc>https://sachin540m.github.io/prithviredville/terms.html</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

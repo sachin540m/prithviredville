@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://sachin540m.github.io/prithviredville/sitemap.xml
